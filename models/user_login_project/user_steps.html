@@ -1,0 +1,84 @@
+2.3.1 :001 > user9 = User.new
+ => #<User id: nil, first_name: nil, last_name: nil, email_address: nil, age: nil, created_at: nil, updated_at: nil> 
+2.3.1 :002 > user9.first_name = "Steve"
+ => "Steve" 
+2.3.1 :003 > user9.last_name = "Woz"
+ => "Woz" 
+2.3.1 :004 > user9.email_address = "Stillalive@apple.org"
+ => "Stillalive@apple.org" 
+2.3.1 :005 > user9.age = 123132
+ => 123132 
+2.3.1 :006 > user9.save
+   (0.2ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false 
+2.3.1 :007 > user9.save
+   (0.2ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false 
+2.3.1 :008 > ^C
+2.3.1 :008 > User.all
+  User Load (3.0ms)  SELECT "users".* FROM "users"
+ => #<ActiveRecord::Relation [#<User id: 1, first_name: "Jon", last_name: "Stark", email_address: "jon@thewall.com", age: 17, created_at: "2018-04-04 18:44:58", updated_at: "2018-04-04 18:44:58">, #<User id: 2, first_name: "Bill", last_name: "Gates", email_address: "worldeater@microsoft.com", age: 60, created_at: "2018-04-04 18:45:47", updated_at: "2018-04-04 18:45:47">, #<User id: 3, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 45, created_at: "2018-04-04 18:46:35", updated_at: "2018-04-04 18:46:35">, #<User id: 4, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 140, created_at: "2018-04-04 18:48:38", updated_at: "2018-04-04 18:48:38">, #<User id: 5, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:50:55", updated_at: "2018-04-04 18:50:55">, #<User id: 6, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:54:09", updated_at: "2018-04-04 18:54:09">, #<User id: 7, first_name: "Doug", last_name: "Funnie", email_address: nil, age: nil, created_at: "2018-04-04 18:55:18", updated_at: "2018-04-04 18:55:18">, #<User id: 8, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 170, created_at: "2018-04-04 19:00:17", updated_at: "2018-04-04 19:00:17">]> 
+2.3.1 :009 > User.first
+  User Load (2.5ms)  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+ => #<User id: 1, first_name: "Jon", last_name: "Stark", email_address: "jon@thewall.com", age: 17, created_at: "2018-04-04 18:44:58", updated_at: "2018-04-04 18:44:58"> 
+2.3.1 :010 > User.first
+  User Load (2.8ms)  SELECT  "users".* FROM "users"  ORDER BY "users"."id" ASC LIMIT 1
+ => #<User id: 1, first_name: "Jon", last_name: "Stark", email_address: "jon@thewall.com", age: 17, created_at: "2018-04-04 18:44:58", updated_at: "2018-04-04 18:44:58"> 
+2.3.1 :011 > user3 = User.find(3)
+  User Load (2.5ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+ => #<User id: 3, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 45, created_at: "2018-04-04 18:46:35", updated_at: "2018-04-04 18:46:35"> 
+2.3.1 :012 > user3.last_name: "Not Funny"
+SyntaxError: (irb):12: syntax error, unexpected ':'
+user3.last_name: "Not Funny"
+                ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/user_login_project/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :013 > user3.last_name = "Not Funny"
+ => "Not Funny" 
+2.3.1 :014 > user3.save
+   (0.2ms)  begin transaction
+  SQL (30.5ms)  UPDATE "users" SET "last_name" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_name", "Not Funny"], ["updated_at", "2018-04-04 22:03:52.244005"], ["id", 3]]
+   (3.2ms)  commit transaction
+ => true 
+2.3.1 :015 >  User.find(3)
+  User Load (3.5ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 3]]
+ => #<User id: 3, first_name: "Doug", last_name: "Not Funny", email_address: "thebeats@gmail.com", age: 45, created_at: "2018-04-04 18:46:35", updated_at: "2018-04-04 22:03:52"> 
+2.3.1 :016 > User.find(4).destroy
+  User Load (3.2ms)  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 4]]
+   (0.0ms)  begin transaction
+  SQL (4.2ms)  DELETE FROM "users" WHERE "users"."id" = ?  [["id", 4]]
+   (3.3ms)  commit transaction
+ => #<User id: 4, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 140, created_at: "2018-04-04 18:48:38", updated_at: "2018-04-04 18:48:38"> 
+2.3.1 :017 > User.all
+  User Load (3.2ms)  SELECT "users".* FROM "users"
+ => #<ActiveRecord::Relation [#<User id: 1, first_name: "Jon", last_name: "Stark", email_address: "jon@thewall.com", age: 17, created_at: "2018-04-04 18:44:58", updated_at: "2018-04-04 18:44:58">, #<User id: 2, first_name: "Bill", last_name: "Gates", email_address: "worldeater@microsoft.com", age: 60, created_at: "2018-04-04 18:45:47", updated_at: "2018-04-04 18:45:47">, #<User id: 3, first_name: "Doug", last_name: "Not Funny", email_address: "thebeats@gmail.com", age: 45, created_at: "2018-04-04 18:46:35", updated_at: "2018-04-04 22:03:52">, #<User id: 5, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:50:55", updated_at: "2018-04-04 18:50:55">, #<User id: 6, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:54:09", updated_at: "2018-04-04 18:54:09">, #<User id: 7, first_name: "Doug", last_name: "Funnie", email_address: nil, age: nil, created_at: "2018-04-04 18:55:18", updated_at: "2018-04-04 18:55:18">, #<User id: 8, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 170, created_at: "2018-04-04 19:00:17", updated_at: "2018-04-04 19:00:17">]> 
+2.3.1 :018 > User.order(first_name: :desc)
+  User Load (3.0ms)  SELECT "users".* FROM "users"  ORDER BY "users"."first_name" DESC
+ => #<ActiveRecord::Relation [#<User id: 1, first_name: "Jon", last_name: "Stark", email_address: "jon@thewall.com", age: 17, created_at: "2018-04-04 18:44:58", updated_at: "2018-04-04 18:44:58">, #<User id: 3, first_name: "Doug", last_name: "Not Funny", email_address: "thebeats@gmail.com", age: 45, created_at: "2018-04-04 18:46:35", updated_at: "2018-04-04 22:03:52">, #<User id: 5, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:50:55", updated_at: "2018-04-04 18:50:55">, #<User id: 6, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: nil, created_at: "2018-04-04 18:54:09", updated_at: "2018-04-04 18:54:09">, #<User id: 7, first_name: "Doug", last_name: "Funnie", email_address: nil, age: nil, created_at: "2018-04-04 18:55:18", updated_at: "2018-04-04 18:55:18">, #<User id: 8, first_name: "Doug", last_name: "Funnie", email_address: "thebeats@gmail.com", age: 170, created_at: "2018-04-04 19:00:17", updated_at: "2018-04-04 19:00:17">, #<User id: 2, first_name: "Bill", last_name: "Gates", email_address: "worldeater@microsoft.com", age: 60, created_at: "2018-04-04 18:45:47", updated_at: "2018-04-04 18:45:47">]> 
+2.3.1 :019 > 

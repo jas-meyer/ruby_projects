@@ -1,0 +1,811 @@
+2.3.1 :002 > Blog.all
+  Blog Load (9.8ms)  SELECT "blogs".* FROM "blogs"
+ => #<ActiveRecord::Relation []> 
+2.3.1 :003 > Blog.create(0
+2.3.1 :004?>   Blog.crea^C
+2.3.1 :004 > Blog.create()
+   (0.8ms)  begin transaction
+   (0.1ms)  rollback transaction
++----+------+-------------+------------+------------+
+| id | name | description | created_at | updated_at |
++----+------+-------------+------------+------------+
+|    |      |             |            |            |
++----+------+-------------+------------+------------+
+1 row in set
+2.3.1 :005 > Post.create()
+   (0.1ms)  begin transaction
+   (1.3ms)  rollback transaction
++----+-------+---------+---------+------------+------------+
+| id | title | content | blog_id | created_at | updated_at |
++----+-------+---------+---------+------------+------------+
+|    |       |         |         |            |            |
++----+-------+---------+---------+------------+------------+
+1 row in set
+2.3.1 :006 > Message.create()
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
++----+--------+---------+---------+------------+------------+
+| id | author | message | post_id | created_at | updated_at |
++----+--------+---------+---------+------------+------------+
+|    |        |         |         |            |            |
++----+--------+---------+---------+------------+------------+
+1 row in set
+2.3.1 :007 > Blog.create(name: "Apples" description:"Let's talk about Apples")
+SyntaxError: (irb):7: syntax error, unexpected tIDENTIFIER, expecting ')'
+Blog.create(name: "Apples" description:"Let's talk about Apples")
+                                      ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :008 > Blog.create(name: "Apples", description:"Let's talk about Apples")
+   (0.4ms)  begin transaction
+  SQL (21.3ms)  INSERT INTO "blogs" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Apples"], ["description", "Let's talk about Apples"], ["created_at", "2018-04-06 17:33:20.588158"], ["updated_at", "2018-04-06 17:33:20.588158"]]
+   (3.7ms)  commit transaction
++----+--------+---------------------+--------------------+---------------------+
+| id | name   | description         | created_at         | updated_at          |
++----+--------+---------------------+--------------------+---------------------+
+| 1  | Apples | Let's talk about... | 2018-04-06 17:3... | 2018-04-06 17:33... |
++----+--------+---------------------+--------------------+---------------------+
+1 row in set
+2.3.1 :009 > Blog.create(name: "Orange", description:"Let's talk about oranges") 
+   (0.1ms)  begin transaction
+  SQL (4.3ms)  INSERT INTO "blogs" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Orange"], ["description", "Let's talk about oranges"], ["created_at", "2018-04-06 17:33:44.652489"], ["updated_at", "2018-04-06 17:33:44.652489"]]
+   (2.7ms)  commit transaction
++----+--------+---------------------+--------------------+---------------------+
+| id | name   | description         | created_at         | updated_at          |
++----+--------+---------------------+--------------------+---------------------+
+| 2  | Orange | Let's talk about... | 2018-04-06 17:3... | 2018-04-06 17:33... |
++----+--------+---------------------+--------------------+---------------------+
+1 row in set
+2.3.1 :010 > Blog.create(name: "Banana", description:"Let's talk about bananas") 
+   (0.1ms)  begin transaction
+  SQL (4.3ms)  INSERT INTO "blogs" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Banana"], ["description", "Let's talk about bananas"], ["created_at", "2018-04-06 17:34:05.214053"], ["updated_at", "2018-04-06 17:34:05.214053"]]
+   (3.0ms)  commit transaction
++----+--------+---------------------+--------------------+---------------------+
+| id | name   | description         | created_at         | updated_at          |
++----+--------+---------------------+--------------------+---------------------+
+| 3  | Banana | Let's talk about... | 2018-04-06 17:3... | 2018-04-06 17:34... |
++----+--------+---------------------+--------------------+---------------------+
+1 row in set
+2.3.1 :011 > Blog.create(name: "Blueberry", description:"Let's talk about blueberries")
+   (0.2ms)  begin transaction
+  SQL (4.7ms)  INSERT INTO "blogs" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Blueberry"], ["description", "Let's talk about blueberries"], ["created_at", "2018-04-06 17:34:28.194943"], ["updated_at", "2018-04-06 17:34:28.194943"]]
+   (3.0ms)  commit transaction
++----+-----------+--------------------+-------------------+--------------------+
+| id | name      | description        | created_at        | updated_at         |
++----+-----------+--------------------+-------------------+--------------------+
+| 4  | Blueberry | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
++----+-----------+--------------------+-------------------+--------------------+
+1 row in set
+2.3.1 :012 > Blog.create(name: "Cherry", description:"Let's talk about cherries")
+   (0.2ms)  begin transaction
+  SQL (5.2ms)  INSERT INTO "blogs" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "Cherry"], ["description", "Let's talk about cherries"], ["created_at", "2018-04-06 17:34:51.575303"], ["updated_at", "2018-04-06 17:34:51.575303"]]
+   (4.0ms)  commit transaction
++----+--------+---------------------+--------------------+---------------------+
+| id | name   | description         | created_at         | updated_at          |
++----+--------+---------------------+--------------------+---------------------+
+| 5  | Cherry | Let's talk about... | 2018-04-06 17:3... | 2018-04-06 17:34... |
++----+--------+---------------------+--------------------+---------------------+
+1 row in set
+2.3.1 :013 > Post.create(title: "One a day", content:"Keep the doctor away")
+   (0.1ms)  begin transaction
+  SQL (17.8ms)  INSERT INTO "posts" ("title", "content", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["title", "One a day"], ["content", "Keep the doctor away"], ["created_at", "2018-04-06 18:08:41.127131"], ["updated_at", "2018-04-06 18:08:41.127131"]]
+   (3.4ms)  commit transaction
++----+-----------+----------------+---------+----------------+-----------------+
+| id | title     | content        | blog_id | created_at     | updated_at      |
++----+-----------+----------------+---------+----------------+-----------------+
+| 1  | One a day | Keep the do... |         | 2018-04-06 ... | 2018-04-06 1... |
++----+-----------+----------------+---------+----------------+-----------------+
+1 row in set
+2.3.1 :014 > Post.all
+  Post Load (2.4ms)  SELECT "posts".* FROM "posts"
++----+-----------+----------------+---------+----------------+-----------------+
+| id | title     | content        | blog_id | created_at     | updated_at      |
++----+-----------+----------------+---------+----------------+-----------------+
+| 1  | One a day | Keep the do... |         | 2018-04-06 ... | 2018-04-06 1... |
++----+-----------+----------------+---------+----------------+-----------------+
+1 row in set
+2.3.1 :015 > reload!
+Reloading...
+ => true 
+2.3.1 :016 > reload!
+Reloading...
+ => true 
+2.3.1 :017 > Post.create(title: "One a day", content:"Keep the doctor away")
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
++----+-----------+----------------------+---------+------------+------------+
+| id | title     | content              | blog_id | created_at | updated_at |
++----+-----------+----------------------+---------+------------+------------+
+|    | One a day | Keep the doctor away |         |            |            |
++----+-----------+----------------------+---------+------------+------------+
+1 row in set
+2.3.1 :018 > Post.create(title: "One a day", content:"Keep the doctor away" blog_id:1)
+SyntaxError: (irb):18: syntax error, unexpected tIDENTIFIER, expecting ')'
+...:"Keep the doctor away" blog_id:1)
+...                               ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :019 > Post.create(title: "One a day", content:"Keep the doctor away", blog_id:1)
+   (0.2ms)  begin transaction
+  SQL (5.6ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "One a day"], ["content", "Keep the doctor away"], ["blog_id", 1], ["created_at", "2018-04-06 18:10:52.755263"], ["updated_at", "2018-04-06 18:10:52.755263"]]
+   (2.8ms)  commit transaction
++----+-----------+----------------+---------+----------------+-----------------+
+| id | title     | content        | blog_id | created_at     | updated_at      |
++----+-----------+----------------+---------+----------------+-----------------+
+| 2  | One a day | Keep the do... | 1       | 2018-04-06 ... | 2018-04-06 1... |
++----+-----------+----------------+---------+----------------+-----------------+
+1 row in set
+2.3.1 :020 > Post.create(title: "What's your favorite", content:"Red, Green or Yellow", blog_id:1)
+   (0.2ms)  begin transaction
+  SQL (22.1ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "What's your favorite"], ["content", "Red, Green or Yellow"], ["blog_id", 1], ["created_at", "2018-04-06 18:11:39.444019"], ["updated_at", "2018-04-06 18:11:39.444019"]]
+   (20.3ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 3  | What's you... | Red, Green... | 1       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :021 > Post.create(title: "Where are the best oranges from", content:"Florida or California", blog_id:2)
+   (1.4ms)  begin transaction
+  SQL (17.4ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Where are the best oranges from"], ["content", "Florida or California"], ["blog_id", 2], ["created_at", "2018-04-06 18:12:19.592045"], ["updated_at", "2018-04-06 18:12:19.592045"]]
+   (4.4ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 4  | Where are ... | Florida or... | 2       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :022 > Blog.all
+  Blog Load (2.0ms)  SELECT "blogs".* FROM "blogs"
++----+-----------+--------------------+-------------------+--------------------+
+| id | name      | description        | created_at        | updated_at         |
++----+-----------+--------------------+-------------------+--------------------+
+| 1  | Apples    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 2  | Orange    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 3  | Banana    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 4  | Blueberry | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 5  | Cherry    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
++----+-----------+--------------------+-------------------+--------------------+
+5 rows in set
+2.3.1 :023 > Post.create(title: "What other uses do you have for bananas", content:"I use mine as a phone", blog_id:3)
+   (0.1ms)  begin transaction
+  SQL (4.5ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "What other uses do you have for bananas"], ["content", "I use mine as a phone"], ["blog_id", 3], ["created_at", "2018-04-06 18:13:25.698666"], ["updated_at", "2018-04-06 18:13:25.698666"]]
+   (3.6ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 5  | What other... | I use mine... | 3       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :024 > Post.create(title: "How do you peel a banana", content:"I peel mine by the stem", blog_id:3)
+   (0.1ms)  begin transaction
+  SQL (17.3ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "How do you peel a banana"], ["content", "I peel mine by the stem"], ["blog_id", 3], ["created_at", "2018-04-06 18:15:34.132132"], ["updated_at", "2018-04-06 18:15:34.132132"]]
+   (3.7ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 6  | How do you... | I peel min... | 3       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :025 > Post.create(title: "Should I peel the banana before eating it", content:"I just eat it", blog_id:3)
+   (0.2ms)  begin transaction
+  SQL (4.5ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "Should I peel the banana before eating it"], ["content", "I just eat it"], ["blog_id", 3], ["created_at", "2018-04-06 18:17:06.585243"], ["updated_at", "2018-04-06 18:17:06.585243"]]
+   (3.1ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 7  | Should I p... | I just eat it | 3       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :026 > Blog.all
+  Blog Load (2.8ms)  SELECT "blogs".* FROM "blogs"
++----+-----------+--------------------+-------------------+--------------------+
+| id | name      | description        | created_at        | updated_at         |
++----+-----------+--------------------+-------------------+--------------------+
+| 1  | Apples    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 2  | Orange    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 3  | Banana    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 4  | Blueberry | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
+| 5  | Cherry    | Let's talk abou... | 2018-04-06 17:... | 2018-04-06 17:3... |
++----+-----------+--------------------+-------------------+--------------------+
+5 rows in set
+2.3.1 :027 > Post.create(title: "What is your favorite type of cherry", content:"Rainier's Cherries are the best", blog_id:5)
+   (0.4ms)  begin transaction
+  SQL (4.4ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "What is your favorite type of cherry"], ["content", "Rainier's Cherries are the best"], ["blog_id", 5], ["created_at", "2018-04-06 18:20:18.913835"], ["updated_at", "2018-04-06 18:20:18.913835"]]
+   (3.8ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 8  | What is yo... | Rainier's ... | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :028 > Post.all
+  Post Load (2.7ms)  SELECT "posts".* FROM "posts"
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 1  | One a day     | Keep the d... |         | 2018-04-06... | 2018-04-06... |
+| 2  | One a day     | Keep the d... | 1       | 2018-04-06... | 2018-04-06... |
+| 3  | What's you... | Red, Green... | 1       | 2018-04-06... | 2018-04-06... |
+| 4  | Where are ... | Florida or... | 2       | 2018-04-06... | 2018-04-06... |
+| 5  | What other... | I use mine... | 3       | 2018-04-06... | 2018-04-06... |
+| 6  | How do you... | I peel min... | 3       | 2018-04-06... | 2018-04-06... |
+| 7  | Should I p... | I just eat it | 3       | 2018-04-06... | 2018-04-06... |
+| 8  | What is yo... | Rainier's ... | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+8 rows in set
+2.3.1 :029 > reload!
+Reloading...
+ => true 
+2.3.1 :030 > Blog.all.posts
+SyntaxError: /vagrant/models/blogs/app/models/blog.rb:3: syntax error, unexpected ':', expecting keyword_end
+	has_many: :posts
+	         ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `block in load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:647:in `new_constants_in'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:456:in `load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:354:in `require_or_load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:494:in `load_missing_constant'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:184:in `const_missing'
+	from (irb):30
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :031 > Blog.posts
+SyntaxError: /vagrant/models/blogs/app/models/blog.rb:3: syntax error, unexpected ':', expecting keyword_end
+	has_many: :posts
+	         ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `block in load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:647:in `new_constants_in'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:456:in `load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:354:in `require_or_load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:494:in `load_missing_constant'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:184:in `const_missing'
+	from (irb):31
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :032 > Blog.find(1).posts
+SyntaxError: /vagrant/models/blogs/app/models/blog.rb:3: syntax error, unexpected ':', expecting keyword_end
+	has_many: :posts
+	         ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `block in load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:647:in `new_constants_in'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:456:in `load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:354:in `require_or_load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:494:in `load_missing_constant'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:184:in `const_missing'
+	from (irb):32
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :033 > exit()
+vagrant@vagrant-ubuntu-trusty-64:/vagrant/models/blogs$ rake db:migrate
+vagrant@vagrant-ubuntu-trusty-64:/vagrant/models/blogs$ rails console
+Running via Spring preloader in process 5000
+Loading development environment (Rails 4.2.7)
+2.3.1 :001 > Blog.find(1).posts
+SyntaxError: /vagrant/models/blogs/app/models/blog.rb:3: syntax error, unexpected ':', expecting keyword_end
+	has_many: :posts
+	         ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:457:in `block in load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:647:in `new_constants_in'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:456:in `load_file'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:354:in `require_or_load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:494:in `load_missing_constant'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:184:in `const_missing'
+	from (irb):1
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :002 > reload!
+Reloading...
+ => true 
+2.3.1 :003 > Blog.find(1).posts
+  Blog Load (2.3ms)  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  Post Load (1.8ms)  SELECT "posts".* FROM "posts" WHERE "posts"."blog_id" = ?  [["blog_id", 1]]
+ => #<ActiveRecord::Associations::CollectionProxy [#<Post id: 2, title: "One a day", content: "Keep the doctor away", blog_id: 1, created_at: "2018-04-06 18:10:52", updated_at: "2018-04-06 18:10:52">, #<Post id: 3, title: "What's your favorite", content: "Red, Green or Yellow", blog_id: 1, created_at: "2018-04-06 18:11:39", updated_at: "2018-04-06 18:11:39">]> 
+2.3.1 :004 > Hirb.enable
+ => true 
+2.3.1 :005 > Blog.find(1).posts
+  Blog Load (3.6ms)  SELECT  "blogs".* FROM "blogs" WHERE "blogs"."id" = ? LIMIT 1  [["id", 1]]
+  Post Load (1.4ms)  SELECT "posts".* FROM "posts" WHERE "posts"."blog_id" = ?  [["blog_id", 1]]
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 2  | One a day     | Keep the d... | 1       | 2018-04-06... | 2018-04-06... |
+| 3  | What's you... | Red, Green... | 1       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+2 rows in set
+2.3.1 :006 > Blog.last.posts.order(:title DESC)
+SyntaxError: (irb):6: syntax error, unexpected tCONSTANT, expecting ')'
+Blog.last.posts.order(:title DESC)
+                                 ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :007 > Blog.last.posts.order(title: DESC)
+  Blog Load (2.8ms)  SELECT  "blogs".* FROM "blogs"  ORDER BY "blogs"."id" DESC LIMIT 1
+NameError: uninitialized constant DESC
+	from (irb):7
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :008 > Blog.last.posts.order(title: :desc)
+  Blog Load (2.5ms)  SELECT  "blogs".* FROM "blogs"  ORDER BY "blogs"."id" DESC LIMIT 1
+  Post Load (1.8ms)  SELECT "posts".* FROM "posts" WHERE "posts"."blog_id" = ?  ORDER BY "posts"."title" DESC  [["blog_id", 5]]
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 8  | What is yo... | Rainier's ... | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :009 > Post.create(title: "aAVPUOASDMVLA", content:"VREQWGSDFGSGD", blog_id:5)
+   (0.4ms)  begin transaction
+  SQL (32.2ms)  INSERT INTO "posts" ("title", "content", "blog_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["title", "aAVPUOASDMVLA"], ["content", "VREQWGSDFGSGD"], ["blog_id", 5], ["created_at", "2018-04-06 18:26:11.864371"], ["updated_at", "2018-04-06 18:26:11.864371"]]
+   (3.4ms)  commit transaction
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 9  | aAVPUOASDMVLA | VREQWGSDFGSGD | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+1 row in set
+2.3.1 :010 > Blog.last.posts.order(title: :desc)
+  Blog Load (2.1ms)  SELECT  "blogs".* FROM "blogs"  ORDER BY "blogs"."id" DESC LIMIT 1
+  Post Load (1.3ms)  SELECT "posts".* FROM "posts" WHERE "posts"."blog_id" = ?  ORDER BY "posts"."title" DESC  [["blog_id", 5]]
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 9  | aAVPUOASDMVLA | VREQWGSDFGSGD | 5       | 2018-04-06... | 2018-04-06... |
+| 8  | What is yo... | Rainier's ... | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+2 rows in set
+2.3.1 :011 > post = Post.first
+  Post Load (2.1ms)  SELECT  "posts".* FROM "posts"  ORDER BY "posts"."id" ASC LIMIT 1
++----+-----------+----------------+---------+----------------+-----------------+
+| id | title     | content        | blog_id | created_at     | updated_at      |
++----+-----------+----------------+---------+----------------+-----------------+
+| 1  | One a day | Keep the do... |         | 2018-04-06 ... | 2018-04-06 1... |
++----+-----------+----------------+---------+----------------+-----------------+
+1 row in set
+2.3.1 :012 > post.title = "This the end of a bad work"
+ => "This the end of a bad work" 
+2.3.1 :013 > post.title = "This the end of a bad joke"
+ => "This the end of a bad joke" 
+2.3.1 :014 > post.save
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false 
+2.3.1 :015 > post.errors
+ => #<ActiveModel::Errors:0x000000053dd6f0 @base=#<Post id: 1, title: "This the end of a bad joke", content: "Keep the doctor away", blog_id: nil, created_at: "2018-04-06 18:08:41", updated_at: "2018-04-06 18:08:41">, @messages={:blog_id=>["can't be blank"]}> 
+2.3.1 :016 > post.blog_id = 1
+ => 1 
+2.3.1 :017 > post.save
+   (0.2ms)  begin transaction
+  SQL (15.2ms)  UPDATE "posts" SET "title" = ?, "blog_id" = ?, "updated_at" = ? WHERE "posts"."id" = ?  [["title", "This the end of a bad joke"], ["blog_id", 1], ["updated_at", "2018-04-06 18:28:34.448519"], ["id", 1]]
+   (3.4ms)  commit transaction
+ => true 
+2.3.1 :018 > Post.all
+  Post Load (3.2ms)  SELECT "posts".* FROM "posts"
++----+---------------+---------------+---------+---------------+---------------+
+| id | title         | content       | blog_id | created_at    | updated_at    |
++----+---------------+---------------+---------+---------------+---------------+
+| 1  | This the e... | Keep the d... | 1       | 2018-04-06... | 2018-04-06... |
+| 2  | One a day     | Keep the d... | 1       | 2018-04-06... | 2018-04-06... |
+| 3  | What's you... | Red, Green... | 1       | 2018-04-06... | 2018-04-06... |
+| 4  | Where are ... | Florida or... | 2       | 2018-04-06... | 2018-04-06... |
+| 5  | What other... | I use mine... | 3       | 2018-04-06... | 2018-04-06... |
+| 6  | How do you... | I peel min... | 3       | 2018-04-06... | 2018-04-06... |
+| 7  | Should I p... | I just eat it | 3       | 2018-04-06... | 2018-04-06... |
+| 8  | What is yo... | Rainier's ... | 5       | 2018-04-06... | 2018-04-06... |
+| 9  | aAVPUOASDMVLA | VREQWGSDFGSGD | 5       | 2018-04-06... | 2018-04-06... |
++----+---------------+---------------+---------+---------------+---------------+
+9 rows in set
+2.3.1 :019 > reload!
+Reloading...
+ => true 
+2.3.1 :020 > ^C
+2.3.1 :020 > exit(0
+2.3.1 :021?>   ^C
+2.3.1 :021 > exit
+vagrant@vagrant-ubuntu-trusty-64:/vagrant/models/blogs$ rake db:migrate
+vagrant@vagrant-ubuntu-trusty-64:/vagrant/models/blogs$ rails console
+Running via Spring preloader in process 5156
+Loading development environment (Rails 4.2.7)
+2.3.1 :001 > Message.all
+  Message Load (11.0ms)  SELECT "messages".* FROM "messages"
+ => #<ActiveRecord::Relation []> 
+2.3.1 :002 > Message.create(author: "Jake Fitzpatrick", message: "I hate bananas")
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => #<Message id: nil, author: "Jake Fitzpatrick", message: "I hate bananas", post_id: nil, created_at: nil, updated_at: nil> 
+2.3.1 :003 > Message.create(author: "Jake Fitzpatrick", message: "I hate bananas", post_id:3))
+SyntaxError: (irb):3: syntax error, unexpected ')', expecting end-of-input
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :004 > Message.create(author: "Jake Fitzpatrick", message: "I hate bananas", post_id:3)
+   (0.1ms)  begin transaction
+   (0.2ms)  rollback transaction
+ => #<Message id: nil, author: "Jake Fitzpatrick", message: "I hate bananas", post_id: 3, created_at: nil, updated_at: nil> 
+2.3.1 :005 > Message.create(author: "Jake Fitzpatrick", message: "I hate bananas", post_id:3)
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => #<Message id: nil, author: "Jake Fitzpatrick", message: "I hate bananas", post_id: 3, created_at: nil, updated_at: nil> 
+2.3.1 :006 > message = Message.new
+ => #<Message id: nil, author: nil, message: nil, post_id: nil, created_at: nil, updated_at: nil> 
+2.3.1 :007 > message.author="Jake Fitzpatrick"
+ => "Jake Fitzpatrick" 
+2.3.1 :008 > message.message="I hate bananas"
+ => "I hate bananas" 
+2.3.1 :009 > message.post_id=3
+ => 3 
+2.3.1 :010 > message.save
+   (0.1ms)  begin transaction
+   (0.1ms)  rollback transaction
+ => false 
+2.3.1 :011 > message.errors
+ => #<ActiveModel::Errors:0x000000051f3a88 @base=#<Message id: nil, author: "Jake Fitzpatrick", message: "I hate bananas", post_id: 3, created_at: nil, updated_at: nil>, @messages={:message=>["is too short (minimum is 15 characters)"]}> 
+2.3.1 :012 > message.message="I hate bananas, so there this should be 15 letters"
+ => "I hate bananas, so there this should be 15 letters" 
+2.3.1 :013 > message.save
+   (0.2ms)  begin transaction
+  SQL (18.7ms)  INSERT INTO "messages" ("author", "message", "post_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["author", "Jake Fitzpatrick"], ["message", "I hate bananas, so there this should be 15 letters"], ["post_id", 3], ["created_at", "2018-04-06 18:51:37.119881"], ["updated_at", "2018-04-06 18:51:37.119881"]]
+   (3.9ms)  commit transaction
+ => true 
+2.3.1 :014 > Message.all
+  Message Load (2.9ms)  SELECT "messages".* FROM "messages"
+ => #<ActiveRecord::Relation [#<Message id: 1, author: "Jake Fitzpatrick", message: "I hate bananas, so there this should be 15 letters", post_id: 3, created_at: "2018-04-06 18:51:37", updated_at: "2018-04-06 18:51:37">]> 
+2.3.1 :015 > Hirb.enable
+ => true 
+2.3.1 :016 > Message.all
+  Message Load (2.2ms)  SELECT "messages".* FROM "messages"
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+| id | author           | message                    | post_id | created_at              | updated_at              |
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+| 1  | Jake Fitzpatrick | I hate bananas, so ther... | 3       | 2018-04-06 18:51:37 UTC | 2018-04-06 18:51:37 UTC |
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+1 row in set
+2.3.1 :017 > post = Post.find(3)
+  Post Load (2.4ms)  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+| id | title                | content              | blog_id | created_at              | updated_at              |
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+| 3  | What's your favorite | Red, Green or Yellow | 1       | 2018-04-06 18:11:39 UTC | 2018-04-06 18:11:39 UTC |
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+1 row in set
+2.3.1 :018 > Message.all
+  Message Load (2.8ms)  SELECT "messages".* FROM "messages"
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+| id | author           | message                    | post_id | created_at              | updated_at              |
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+| 1  | Jake Fitzpatrick | I hate bananas, so ther... | 3       | 2018-04-06 18:51:37 UTC | 2018-04-06 18:51:37 UTC |
++----+------------------+----------------------------+---------+-------------------------+-------------------------+
+1 row in set
+2.3.1 :019 > Message.find(3).destroy
+  Message Load (2.1ms)  SELECT  "messages".* FROM "messages" WHERE "messages"."id" = ? LIMIT 1  [["id", 3]]
+ActiveRecord::RecordNotFound: Couldn't find Message with 'id'=3
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/core.rb:155:in `find'
+	from (irb):19
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :020 > Post.find(3).destroy
+  Post Load (2.5ms)  SELECT  "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT 1  [["id", 3]]
+   (0.1ms)  begin transaction
+  Message Load (1.5ms)  SELECT "messages".* FROM "messages" WHERE "messages"."post_id" = ?  [["post_id", 3]]
+  SQL (2.9ms)  DELETE FROM "messages" WHERE "messages"."id" = ?  [["id", 1]]
+  SQL (1.1ms)  DELETE FROM "posts" WHERE "posts"."id" = ?  [["id", 3]]
+   (3.4ms)  commit transaction
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+| id | title                | content              | blog_id | created_at              | updated_at              |
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+| 3  | What's your favorite | Red, Green or Yellow | 1       | 2018-04-06 18:11:39 UTC | 2018-04-06 18:11:39 UTC |
++----+----------------------+----------------------+---------+-------------------------+-------------------------+
+1 row in set
+2.3.1 :021 > Message.all
+  Message Load (2.9ms)  SELECT "messages".* FROM "messages"
+ => #<ActiveRecord::Relation []> 
+2.3.1 :022 > Blog.where(:id < 5)
+ArgumentError: comparison of Symbol with 5 failed
+	from (irb):22:in `<'
+	from (irb):22
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :023 > Blog.where(id: < 5)
+SyntaxError: (irb):23: syntax error, unexpected '<'
+Blog.where(id: < 5)
+                ^
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+	from /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/commands/rails.rb:6:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/command_wrapper.rb:38:in `call'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:201:in `block in serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `fork'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:171:in `serve'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:141:in `block in run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `loop'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application.rb:135:in `run'
+	from /home/vagrant/.rvm/gems/ruby-2.3.1/gems/spring-2.0.2/lib/spring/application/boot.rb:19:in `<top (required)>'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from -e:1:in `<main>'
+2.3.1 :024 > Blog.where("id:> ?",5)
+  Blog Load (0.8ms)  SELECT "blogs".* FROM "blogs" WHERE (id:> 5)
+Hirb Error: SQLite3::SQLException: unrecognized token: ":": SELECT "blogs".* FROM "blogs" WHERE (id:> 5)
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/sqlite3-1.3.13/lib/sqlite3/database.rb:91:in `initialize'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/sqlite3-1.3.13/lib/sqlite3/database.rb:91:in `new'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/sqlite3-1.3.13/lib/sqlite3/database.rb:91:in `prepare'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/sqlite3_adapter.rb:284:in `block in exec_query'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/abstract_adapter.rb:484:in `block in log'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/abstract_adapter.rb:478:in `log'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/sqlite3_adapter.rb:281:in `exec_query'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/abstract/database_statements.rb:356:in `select'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/abstract/database_statements.rb:32:in `select_all'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/connection_adapters/abstract/query_cache.rb:70:in `select_all'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/querying.rb:39:in `find_by_sql'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/relation.rb:639:in `exec_queries'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/relation.rb:515:in `load'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/relation.rb:243:in `to_a'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activerecord-4.2.7/lib/active_record/relation/delegation.rb:46:in `to_ary'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/formatter.rb:88:in `Array'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/formatter.rb:88:in `determine_output_class'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/formatter.rb:53:in `format_output'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/view.rb:205:in `render_output'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/view.rb:123:in `view_output'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/view.rb:201:in `view_or_page_output'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/hirb-0.7.3/lib/hirb/view.rb:187:in `output_value'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:490:in `block (2 levels) in eval_input'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:623:in `signal_status'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:486:in `block in eval_input'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb/ruby-lex.rb:246:in `block (2 levels) in each_top_level_statement'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb/ruby-lex.rb:232:in `loop'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb/ruby-lex.rb:232:in `block in each_top_level_statement'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb/ruby-lex.rb:231:in `catch'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb/ruby-lex.rb:231:in `each_top_level_statement'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:485:in `eval_input'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:395:in `block in start'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:394:in `catch'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/irb.rb:394:in `start'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:110:in `start'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/console.rb:9:in `start'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:68:in `console'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/railties-4.2.7/lib/rails/commands.rb:17:in `<top (required)>'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `block in require'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:274:in `require'
+    /vagrant/models/blogs/bin/rails:9:in `<top (required)>'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `block in load'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:240:in `load_dependency'
+    /home/vagrant/.rvm/gems/ruby-2.3.1/gems/activesupport-4.2.7/lib/active_support/dependencies.rb:268:in `load'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+    /home/vagrant/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+    -e:1:in `<main>'
+2.3.1 :025 > Blog.where("id > ?",5)
+  Blog Load (2.6ms)  SELECT "blogs".* FROM "blogs" WHERE (id > 5)
+ => #<ActiveRecord::Relation []> 
+2.3.1 :026 > Blog.where("id < ?",5)
+  Blog Load (2.7ms)  SELECT "blogs".* FROM "blogs" WHERE (id < 5)
++----+-----------+------------------------------+-------------------------+-------------------------+
+| id | name      | description                  | created_at              | updated_at              |
++----+-----------+------------------------------+-------------------------+-------------------------+
+| 1  | Apples    | Let's talk about Apples      | 2018-04-06 17:33:20 UTC | 2018-04-06 17:33:20 UTC |
+| 2  | Orange    | Let's talk about oranges     | 2018-04-06 17:33:44 UTC | 2018-04-06 17:33:44 UTC |
+| 3  | Banana    | Let's talk about bananas     | 2018-04-06 17:34:05 UTC | 2018-04-06 17:34:05 UTC |
+| 4  | Blueberry | Let's talk about blueberries | 2018-04-06 17:34:28 UTC | 2018-04-06 17:34:28 UTC |
++----+-----------+------------------------------+-------------------------+-------------------------+
+4 rows in set

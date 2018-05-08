@@ -1,0 +1,14 @@
+<h1> New Dojo </h1>
+<% flash.each do |value| %>
+	<%=value%>
+<% end %> 
+<form action = "/dojos/create" method = "post">
+	<input type="hidden" name ="authenticity_token" value = "<%= form_authenticity_token %>">
+<h3> Branch: <input type ="text" name ="dojo[branch]"></h3>
+<h3> Street: <input type ="text" name = "dojo[street]"></h3>
+<h3> City: <input type ="text" name = "dojo[city]"></h3>
+<h3> State: <input type="text" name = "dojo[state]"></h3>
+<button type = "submit">Create</button>
+<form>
+
+<h3><a href = "/dojos">Home</a></h3>

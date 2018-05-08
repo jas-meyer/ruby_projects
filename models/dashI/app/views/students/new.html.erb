@@ -1,0 +1,23 @@
+<h1> New Student </h1>
+<% flash.each do |value| %>
+	<%=value%>
+<% end %> 
+<form action = "/dojos/<%=@dojo.id%>/students" method = "post">
+	<input type="hidden" name ="authenticity_token" value = "<%= form_authenticity_token %>">
+<h3> First Name: <input type ="text" name ="student[first_name]"></h3>
+<h3> Last Name: <input type ="text" name = "student[last_name]"></h3>
+<h3> Email Address: <input type ="text" name = "student[email]"></h3>
+<h3> Dojo: 
+	<select name = "student[dojo_id]" selected = <%=@dojo.branch%>
+	>
+
+	
+	<% @dojos.each do |dojo| %>
+<option value ="<%=dojo.id%>"><%=dojo.branch%></option>
+	<% end %>
+</select>
+</h3>
+<button type = "submit">Create</button>
+<form>
+
+<h3><a href = "/dojos">Home</a> | <a href ="/dojos/<%=@dojo.id%>"><%=@dojo.branch%></h3>

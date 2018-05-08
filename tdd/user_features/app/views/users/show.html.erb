@@ -1,0 +1,25 @@
+<h1>Users#show</h1>
+<a href ="/users/<%=@user.id%>/edit">Edit Profile</a>
+<p> <%=@user.name%> </p>
+<p> <%=@user.email%> </p>
+<% @secrets.each do |secret| %>
+
+  <% if current_user == secret.user %>
+    <%= secret.content %> 
+    <form action = "/secrets/<%=secret.id%>"" method = "post">
+    	 <input type = 'hidden' name = "authenticity_token" value = "<%=form_authenticity_token%>">
+    	 <input type="hidden" name="_method" value="delete">
+  <input type = "submit" value = "Delete Secret" name= "Delete Secret" id = "Delete Secret">
+</form>
+  <% end %>
+<% end %>
+<form action = "/secrets/" method = "post">
+  <input type = 'hidden' name = "authenticity_token" value = "<%=form_authenticity_token%>">
+  <label>Secret Content</label>
+  <input type="text" name="secret[content]" id = "Content" >
+  <input type = "hidden" name ="secret[user_id]" id= "User_id" value = "<%=@user.id%>">   
+  <input type = "submit" value="Create Secret">
+</form>
+
+
+
